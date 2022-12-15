@@ -1,5 +1,5 @@
 import { Router } from "express";
-import greetingController from "../domain/GreetingController";
+import greetingController from "../controllers/GreetingController";
 
 const greetingRouter = Router();
 

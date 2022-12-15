@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { AppDataSource } from './data-source';
 import greetingRouter from './routes/greeting.routes';
+import { errorMiddleware } from './middlewares/error';
 dotenv.config();
 
 
@@ -13,6 +14,7 @@ class App {
 
     constructor() {
         this.app = express();
+        this.middlewares();
         this.routes();
         this.dbConnection();
     }
@@ -21,6 +23,7 @@ class App {
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
         this.app.use(cors());
+        this.app.use(errorMiddleware);
     }
 
     routes() {
