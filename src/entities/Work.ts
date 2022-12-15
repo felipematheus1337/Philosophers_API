@@ -14,8 +14,8 @@ export class Work implements IWork{
     @Column({type:'text'})
     name: string;
 
-    @Column({type:'date'})
-    date: Date;
+    @Column({type:'text'})
+    date: string;
 
     @Column({type:'text'})
     buyUrl: string;

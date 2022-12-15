@@ -2,7 +2,7 @@
 
 export interface ICreatePhilosopher {
     name: string;
-    birthDate: Date;
+    birthDate: string;
     image?: string;
     country: string;
     typePhilosophy: string;

@@ -29,7 +29,7 @@ class App {
     }
 
     routes() {
-        this.app.use("/", greetingRouter);
+        this.app.use("/hello", greetingRouter);
         this.app.use("/filosofo", philosopherRouter);
      }
 

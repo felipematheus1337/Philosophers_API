@@ -15,8 +15,8 @@ export class Philosopher implements IPhilosopher {
     @Column({type:'text'})
     name: string;
 
-    @Column({type:'date'})
-    birthDate: Date;
+    @Column({type:'text'})
+    birthDate: string;
 
 
     @Column({type:'text',nullable:true})

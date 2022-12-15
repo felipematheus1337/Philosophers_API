@@ -3,7 +3,7 @@ import { Work } from "../../entities/Work";
 export interface IPhilosopher {
     id: number;
     name: string;
-    birthDate: Date;
+    birthDate: string;
     image?: string;
     country: string;
     typePhilosophy: string;
