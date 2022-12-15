@@ -1,9 +1,11 @@
 import { ICreatePhilosopher } from "../domain/model/ICreatePhilosopher";
+import { ICreatePhilosopherImage } from "../domain/model/ICreatePhilosopherImage";
 import { IPhilosopherService } from "../domain/services/IPhilosopherService";
 import { Philosopher } from "../entities/Philosopher";
 import { philosopherRepository } from "../repositories/PhilosopherRepository";
 
 class PhilosopherService implements IPhilosopherService {
+    
     public async create({
         name,
         birthDate,
@@ -24,6 +26,10 @@ class PhilosopherService implements IPhilosopherService {
 
         return philosopher;
         
+    }
+
+    public async updateImage({id , imageUrl }: ICreatePhilosopherImage): Promise<string | null> {
+        throw new Error("Method not implemented.");
     }
     
 }

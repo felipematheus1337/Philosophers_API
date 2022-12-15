@@ -21,5 +21,9 @@ export class PhilosopherController {
          })
 
          return response.status(201).json(newPhilosopher);
+     }
+    
+    async updatePhilosopherImage(request: Request, response: Response): Promise<string | null> {
+        return '';
     }
 }
