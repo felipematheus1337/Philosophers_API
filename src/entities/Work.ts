@@ -1,10 +1,10 @@
-import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { IWork } from "../domain/model/IWork";
 import { Philosopher } from "./Philosopher";
 
 
 
-
+@Entity('works')
 export class Work implements IWork{
     
 
