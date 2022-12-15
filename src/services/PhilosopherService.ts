@@ -3,7 +3,7 @@ import { IPhilosopherService } from "../domain/services/IPhilosopherService";
 import { Philosopher } from "../entities/Philosopher";
 import { philosopherRepository } from "../repositories/PhilosopherRepository";
 
-export class PhilosopherService implements IPhilosopherService {
+class PhilosopherService implements IPhilosopherService {
     public async create({
         name,
         birthDate,
@@ -27,3 +27,5 @@ export class PhilosopherService implements IPhilosopherService {
     }
     
 }
+
+export default new PhilosopherService();
