@@ -1,10 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { IPhilosopher } from "../domain/model/IPhilosopher";
+import { Work } from "./Work";
 
 
 
 @Entity('philosophers')
 export class Philosopher implements IPhilosopher {
+    
 
 
     @PrimaryGeneratedColumn()
@@ -25,5 +27,8 @@ export class Philosopher implements IPhilosopher {
 
     @Column({type:'text'})
     typePhilosophy: string;
+
+    @OneToMany(() => Work, work => work.philosopher)
+    works: Work[];
 
 }

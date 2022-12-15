@@ -1,3 +1,4 @@
+import { Work } from "../../entities/Work";
 
 export interface IPhilosopher {
     id: number;
@@ -6,5 +7,6 @@ export interface IPhilosopher {
     image: string;
     country: string;
     typePhilosophy: string;
+    works: Work[];
     
 }

@@ -1,3 +1,4 @@
+import { Philosopher } from "../../entities/Philosopher";
 
 
 export interface IWork {
@@ -5,4 +6,5 @@ export interface IWork {
     name: string;
     date: Date;
     buyUrl: string;
+    philosopher: Philosopher;
 }
