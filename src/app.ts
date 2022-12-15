@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { AppDataSource } from './data-source';
+import greetingRouter from './routes/greeting.routes';
 dotenv.config();
 
 
@@ -11,13 +13,25 @@ class App {
 
     constructor() {
         this.app = express();
+        this.routes();
+        this.dbConnection();
     }
 
-    middlewares() { }
+    middlewares() { 
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json());
+        this.app.use(cors());
+    }
 
-    routes() { }
+    routes() {
+        this.app.use("/",greetingRouter);
+     }
 
-    dbConnection() { }
+    dbConnection(): void {
+        AppDataSource.initialize().then(() => {
+            console.log("Conexão com BD, sucesso! 🎉🎉")
+        })
+     }
 }
 
 export default new App().app;
