@@ -18,6 +18,8 @@ export class Philosopher implements IPhilosopher {
     @Column({type:'text'})
     birthDate: string;
 
+    @Column({type:'text',nullable:true})
+    flag:string
 
     @Column({type:'text',nullable:true})
     image: string;

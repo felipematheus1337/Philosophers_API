@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { ICreatePhilosopher } from "../domain/model/ICreatePhilosopher";
-import { BadRequestError } from "../exceptions/api-error";
+import { BadRequestError, NotFoundError } from "../exceptions/api-error";
 import PhilosopherService from "../services/PhilosopherService";
 
 export class PhilosopherController {
@@ -14,6 +14,17 @@ export class PhilosopherController {
         }
 
         return response.json(philosophers);
+    }
+
+    async showPhilosopher(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+        const philosopher = await PhilosopherService.show(id);
+
+        if (!philosopher) {
+            throw new NotFoundError("No philosopher found!")
+        }
+
+        return response.json(philosopher);
     }
 
     async create(request: Request,response: Response):Promise<Response> {
@@ -58,6 +69,17 @@ export class PhilosopherController {
 
         return response.status(500);
 
-        
+    }
+
+    async deletePhilosopher(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
+
+        const isPhilosopherDeleted = await PhilosopherService.deletePhilosopher(id);
+
+        if (isPhilosopherDeleted) {
+            return response.status(204);
+        }
+
+        return response.status(400);
     }
 }
