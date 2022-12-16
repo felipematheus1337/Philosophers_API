@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource } from "typeorm";
+import dotenv from 'dotenv';
+import path from 'path'
+dotenv.config({ path: path.resolve(__dirname, '.env.test') });
 
 const port = process.env.DB_PORT as number | undefined;
 

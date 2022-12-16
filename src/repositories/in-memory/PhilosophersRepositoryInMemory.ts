@@ -1,6 +1,7 @@
 import { ICreatePhilosopher } from "../../domain/model/ICreatePhilosopher";
 import { IPhilosopherService } from "../../domain/services/IPhilosopherService";
 import { Philosopher } from "../../entities/Philosopher";
+import { IExistsObj } from "./IExistsObj";
 
 
 class PhilosophersRepositoryInMemory implements IPhilosopherService {
@@ -16,9 +17,11 @@ class PhilosophersRepositoryInMemory implements IPhilosopherService {
         return philosopher;
     }
 
-    async exists(name: string): Promise<Boolean> {
+    async exists(name: string): Promise<IExistsObj> {
         const philosopher = this.philosophers.some((philosophers) => philosophers.name == name);
-        return philosopher;
+        return philosopher === true ?
+            { is: true, message: "Philosopher already exists" }
+           : {is:false,message:""}
     }
 }
 

@@ -7,6 +7,7 @@ import greetingRouter from './routes/greeting.routes';
 import { errorMiddleware } from './middlewares/error';
 import philosopherRouter from './routes/philosopher.routes';
 import workerRouter from './routes/worker.routes';
+import path from 'path';
 dotenv.config();
 
 
