@@ -40,6 +40,19 @@ class S3Storage {
         return URL_IMG;
 
     }
+
+    async deleteFile(filename: string): Promise<Boolean> {
+        console.log(filename);
+        const deleteObj = { Bucket: 'philosophers-api', Key: filename } as S3.Types.DeleteObjectRequest;
+
+        this.client.deleteObject(deleteObj)
+            .promise();
+        
+        return true;
+
+    }
+
+
 }
 
 export default S3Storage;

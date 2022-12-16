@@ -5,7 +5,18 @@ import PhilosopherService from "../services/PhilosopherService";
 
 export class PhilosopherController {
 
-     async create(request: Request,response: Response):Promise<Response> {
+      
+    async findAll(request: Request,response: Response):Promise<Response> {
+        const philosophers = await PhilosopherService.list();
+
+        if (!philosophers) {
+            return response.status(404).json('Not found');
+        }
+
+        return response.json(philosophers);
+    }
+
+    async create(request: Request,response: Response):Promise<Response> {
          const { name, birthDate, image, country, typePhilosophy } = request.body as ICreatePhilosopher;
 
          if (!name) {
@@ -34,7 +45,19 @@ export class PhilosopherController {
             philosopher: philosopher
         });
 
+    }
 
+    async deleteImage(request: Request, response: Response): Promise<Response> {
+        const { id } = request.params;
 
+        const isDeleted = await PhilosopherService.deleteImage(id);
+
+        if (isDeleted) {
+            return response.status(204);
+        }
+
+        return response.status(500);
+
+        
     }
 }

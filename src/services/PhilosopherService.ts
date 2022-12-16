@@ -8,6 +8,17 @@ import { philosopherRepository } from "../repositories/PhilosopherRepository";
 import S3Storage from "../utils/S3Storage";
 
 class PhilosopherService implements IPhilosopherService {
+
+
+    public async list():Promise<IPhilosopher[]> {
+        const philosophers = await philosopherRepository.find({});
+        return philosophers;
+    }
+
+
+
+
+
     
     public async create({
         name,
@@ -48,8 +59,34 @@ class PhilosopherService implements IPhilosopherService {
         const philosopher = await philosopherRepository.findOneBy({ id: Number(id) });
         
         return philosopher!;
+    }
+
+    public async deleteImage(id: string): Promise<Boolean> {
+        const philosopher = await philosopherRepository.findOneBy({ id: Number(id) });
+        
+        if (!philosopher) {
+            throw new BadRequestError("Philosopher not found with this id!");
+        }
+
+        let urlArr = philosopher.image.split("/")
+        const url = urlArr[urlArr.length - 1]
+        console.log(url);
+        const s3Storage = new S3Storage();
+
+        let isDeleted = await s3Storage.deleteFile(url);
+  
+        if (!isDeleted) {
+            throw new Error("Could not delete the image!")
+        }
+
+        philosopher.image = '';
 
 
+        const philosopherUpdated = philosopherRepository.create(philosopher);
+
+        await philosopherRepository.save(philosopherUpdated);
+
+        return true;
 
     }
     

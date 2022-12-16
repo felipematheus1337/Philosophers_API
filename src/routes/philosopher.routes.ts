@@ -8,10 +8,12 @@ const upload = multer(multerConfig);
 
 const philosopherController = new PhilosopherController();
 
-
+philosopherRouter.get("/", philosopherController.findAll);
 philosopherRouter.post("/", philosopherController.create);
 
-philosopherRouter.post("/updateimage/:id", upload.single('image'),philosopherController.updatePhilosopherImage);
+philosopherRouter.post("/updateimage/:id", upload.single('image'), philosopherController.updatePhilosopherImage);
+philosopherRouter.delete("/deleteimage/:id",philosopherController.deleteImage);
+
 
 
 export default philosopherRouter;
