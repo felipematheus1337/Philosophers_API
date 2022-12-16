@@ -11,7 +11,7 @@ const philosopherController = new PhilosopherController();
 
 philosopherRouter.post("/", philosopherController.create);
 
-philosopherRouter.post("/updateimage", upload.single('image'),philosopherController.updatePhilosopherImage);
+philosopherRouter.post("/updateimage/:id", upload.single('image'),philosopherController.updatePhilosopherImage);
 
 
 export default philosopherRouter;

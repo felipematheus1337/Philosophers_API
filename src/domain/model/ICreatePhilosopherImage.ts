@@ -1,5 +1,5 @@
 
 export interface ICreatePhilosopherImage {
     id: number;
-    imageUrl: string;
+    file: Express.Multer.File;
 }

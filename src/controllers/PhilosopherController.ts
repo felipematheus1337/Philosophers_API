@@ -5,7 +5,7 @@ import PhilosopherService from "../services/PhilosopherService";
 
 export class PhilosopherController {
 
-     async create(request: Request,response: Response) {
+     async create(request: Request,response: Response):Promise<Response> {
          const { name, birthDate, image, country, typePhilosophy } = request.body as ICreatePhilosopher;
 
          if (!name) {
@@ -23,7 +23,18 @@ export class PhilosopherController {
          return response.status(201).json(newPhilosopher);
      }
     
-    async updatePhilosopherImage(request: Request, response: Response): Promise<string | null> {
-        return '';
+    async updatePhilosopherImage(request: Request, response: Response): Promise<Response> {
+        const { file } = request;
+        const { id } = request.params;
+   
+        let philosopher = await PhilosopherService.updateImage(id, file!);
+        
+        return response.json({
+            message: 'Philosopher Image sucessfully updated!',
+            philosopher: philosopher
+        });
+
+
+
     }
 }
