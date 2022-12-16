@@ -1,6 +1,7 @@
 
 
 class FlagUrlGenerator {
+    
     private readonly BASE_URL;
 
     constructor() {

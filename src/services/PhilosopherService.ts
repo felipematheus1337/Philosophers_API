@@ -12,7 +12,11 @@ class PhilosopherService implements IPhilosopherService {
 
 
     public async list():Promise<IPhilosopher[]> {
-        const philosophers = await philosopherRepository.find({});
+        const philosophers = await philosopherRepository.find({
+            relations: {
+                works:true
+            }
+        });
         return philosophers;
     }
 
@@ -59,7 +63,7 @@ class PhilosopherService implements IPhilosopherService {
             throw new BadRequestError("Philosopher don't exists!");
         }
 
-        if (philosopherExists.image === '' || philosopherExists.image === ' ' || philosopherExists.image === null) {
+        if (!philosopherExists.image.includes("https")) {
 
             const s3Storage = new S3Storage();
 

@@ -6,6 +6,7 @@ import { AppDataSource } from './data-source';
 import greetingRouter from './routes/greeting.routes';
 import { errorMiddleware } from './middlewares/error';
 import philosopherRouter from './routes/philosopher.routes';
+import workerRouter from './routes/worker.routes';
 dotenv.config();
 
 
@@ -31,6 +32,7 @@ class App {
     routes() {
         this.app.use("/hello", greetingRouter);
         this.app.use("/filosofo", philosopherRouter);
+        this.app.use("/obra", workerRouter);
      }
 
     dbConnection(): void {
