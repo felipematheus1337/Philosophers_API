@@ -35,6 +35,7 @@ class PhilosopherService implements IPhilosopherService {
         name,
         birthDate,
         country,
+        description,
         typePhilosophy }:
         ICreatePhilosopher):
         Promise<Philosopher | undefined> {
@@ -45,6 +46,7 @@ class PhilosopherService implements IPhilosopherService {
         const philosopher = philosopherRepository.create({
             name,
             birthDate,
+            description,
             country,
             typePhilosophy,
             flag

@@ -24,6 +24,9 @@ export class Philosopher implements IPhilosopher {
     @Column({type:'text',nullable:true})
     image: string;
 
+    @Column({type:'text',nullable:true})
+    description: string;
+
     @Column({type:'text'})
     country: string;
 

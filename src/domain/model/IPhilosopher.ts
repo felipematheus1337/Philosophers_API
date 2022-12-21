@@ -8,6 +8,7 @@ export interface IPhilosopher {
     flag?: string;
     country: string;
     typePhilosophy: string;
+    description: string;
     works: Work[];
     
 }
